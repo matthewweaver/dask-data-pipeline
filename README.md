@@ -16,7 +16,7 @@ We expect to see the following in the final solution code:
 
 - Unit tests _(as appropriate)_
 - Integration and/or end-to-end tests _(as appropriate)_
-- Dedependency management _(example: pip & setup.py)_
+- Dedependency management with [pipenv](https://pipenv.readthedocs.io/en/latest/) and a Pipfile
 - Code quality tooling _(linting, etc.)_
 
 > If any of these concepts are unfamiliar to you, the Hinge Health engineer partnered with you will provide assistance.
