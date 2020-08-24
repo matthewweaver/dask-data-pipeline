@@ -1,5 +1,9 @@
 # Hinge Health Data Engineering Onsite Project
 
+The US Softball League has entered into an agreement with Unity Golf Club to provide a common set of membership benefits to both organizations. But there are problems: the data is not entirely compatible. To help these two fine organizations, clean up the data and provide some simple statistics.
+
+
+
 ## Challenge Overview
 
 Write a python script to process and analyze the data provided in the included files.
@@ -20,6 +24,8 @@ We expect to see the following in the final solution code:
 - Code quality tooling _(linting, etc.)_
 
 > If any of these concepts are unfamiliar to you, the Hinge Health engineer partnered with you will provide assistance.
+
+Again, you are not expected to finish the entire exercise. Budget no more than 2 hours, and incrementally commit your work into a branch for timestamping. We like to follow your thinking through the git commits.
 
 ## Part 1: Data Munging
 
@@ -82,7 +88,7 @@ Produce the following metrics with visualizations/charts as you see fit:
     - By company
     - By state
 3. Leaderboard of top companies, sorted by average score
-    - Overall 
+    - Overall
 4. Average number of days since last activity
     - By company
 5. List of suspect data records
@@ -91,7 +97,7 @@ Produce the following metrics with visualizations/charts as you see fit:
 
 ## Part 3: Ingestion System
 
-Build a data model to support the data seen here and write software that will write this data to a database. For the purposes of this exercise use a PostgreSQL database running locally.
+Build a data model to support the data seen here and write software that will write this data to a database. For the purposes of this exercise use a SQLite2 or PostgreSQL database running locally.
 
 > Proceed as if the dataset does not fit entirely into RAM.
 
