@@ -6,7 +6,7 @@ The US Softball League has entered into an agreement with Unity Golf Club to pro
 
 ## Challenge Overview
 
-Write a python script to process and analyze the data provided in the included files.
+Write a small python application to process and analyze the data provided in the included files.
 
 **Be sure to set aside at least 15-30 minutes near the end of the session to ensure Part 3 gets completed.**
 
@@ -26,6 +26,8 @@ We expect to see the following in the final solution code:
 > If any of these concepts are unfamiliar to you, the Hinge Health engineer partnered with you will provide assistance.
 
 Again, you are not expected to finish the entire exercise. Budget no more than 2 hours, and incrementally commit your work into a branch for timestamping. We like to follow your thinking through the git commits.
+
+Once you have completed the 2 hours, issue a Pull Request. Please do not push directly to master.
 
 ## Part 1: Data Munging
 
@@ -78,7 +80,7 @@ Samples:
 
 ## Part 2: Ingestion System
 
-Build a data model to support the data seen here and write software that will write this data to a database. For the purposes of this exercise use a SQLite2 or PostgreSQL database running locally.
+Build a data model to support the data seen here and write software that will write this data to a database. For the purposes of this exercise use a SQLite3 or PostgreSQL database running locally.
 
 > Proceed as if the dataset does not fit entirely into RAM.
 
