@@ -8,9 +8,9 @@ The US Softball League has entered into an agreement with Unity Golf Club to pro
 
 Write a python script to process and analyze the data provided in the included files.
 
-**Be sure to set aside at least 15-30 minutes near the end of the session to ensure Part 4 gets completed.**
+**Be sure to set aside at least 15-30 minutes near the end of the session to ensure Part 3 gets completed.**
 
-The objective is not necessarily to _finish_ the exercise, it's just to observe how one proceeds through the work required.
+The objective is not necessarily to _finish_ the exercise, it's just to observe how one proceeds through the work required. Use the exercise as an opportunity to show what **quality production code** looks like.
 
 > We recommend using the pandas package for this exercise.
 
@@ -75,33 +75,14 @@ Samples:
 |  3 |               Mcdonald Inc |
 |  4 |                  Bruce Inc |
 
-## Part 2: Calculate Metrics
 
-Produce the following metrics with visualizations/charts as you see fit:
-
-1. Average and median player age
-    - Overall
-    - By company
-    - By state
-2. Average and median age when joining the league  
-    - Overall
-    - By company
-    - By state
-3. Leaderboard of top companies, sorted by average score
-    - Overall
-4. Average number of days since last activity
-    - By company
-5. List of suspect data records
-    - By error/problem type
-
-
-## Part 3: Ingestion System
+## Part 2: Ingestion System
 
 Build a data model to support the data seen here and write software that will write this data to a database. For the purposes of this exercise use a SQLite2 or PostgreSQL database running locally.
 
 > Proceed as if the dataset does not fit entirely into RAM.
 
-## Part 4: Follow-up
+## Part 3: Follow-up
 
 Write a document (a simple TODO.txt or TODO.md is fine) outlining the next steps for this "project", taking into account all the progress to this point. Suggestions for further enhancement, improvement, and refactoring are encouraged.
 
