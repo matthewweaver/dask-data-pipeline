@@ -2,17 +2,15 @@
 
 The US Softball League has entered into an agreement with Unity Golf Club to provide a common set of membership benefits to both organizations. But there are problems: the data is not entirely compatible. To help these two fine organizations, clean up the data and provide some simple statistics.
 
-
-
 ## Challenge Overview
 
-Write a small python application to process and analyze the data provided in the included files.
+Write a small Python or Go application to process and analyze the data provided in the included files.
 
 **Be sure to set aside at least 15-30 minutes near the end of the session to ensure Part 3 gets completed.**
 
-The objective is not necessarily to _finish_ the exercise, it's just to observe how one proceeds through the work required. Use the exercise as an opportunity to show what **quality production code** looks like.
+The objective is not necessarily to _finish_ the exercise, it's to observe how you proceeds through the work required. Use the exercise as an opportunity to show what **quality production code** looks like.
 
-> We recommend using the pandas package for this exercise.
+> If using Python we recommend using the `pandas` package for this exercise.
 
 ## Guidelines
 
@@ -20,7 +18,7 @@ We expect to see the following in the final solution code:
 
 - Unit tests _(as appropriate)_
 - Integration and/or end-to-end tests _(as appropriate)_
-- Dedependency management with [pipenv](https://pipenv.readthedocs.io/en/latest/) and a Pipfile
+- Dedependency management with [pipenv](https://pipenv.readthedocs.io/en/latest/) and a Pipfile or Go modules
 - Code quality tooling _(linting, etc.)_
 
 > If any of these concepts are unfamiliar to you, the Hinge Health engineer partnered with you will provide assistance.
@@ -88,5 +86,4 @@ Build a data model to support the data seen here and write software that will wr
 
 Write a document (a simple TODO.txt or TODO.md is fine) outlining the next steps for this "project", taking into account all the progress to this point. Suggestions for further enhancement, improvement, and refactoring are encouraged.
 
-If the entire exercise has not been completed the TODO should also outline the work remaining to reach the end of the exercise.
-
+If the entire exercise has not been completed, the TODO should also outline the work remaining to reach the end of the exercise.
