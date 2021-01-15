@@ -10,7 +10,7 @@ Write a small Python or Go application to process and analyze the data provided 
 
 The objective is not necessarily to _finish_ the exercise, it's to observe how you proceed through the work required. Use the exercise as an opportunity to show what **quality production code** looks like.
 
-> If using Python we recommend using the `pandas` package for this exercise.
+> If using Python we recommend using the `pandas` package for this exercise, though it's not required.
 
 ## Guidelines
 
