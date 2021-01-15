@@ -8,7 +8,7 @@ Write a small Python or Go application to process and analyze the data provided 
 
 **Be sure to set aside at least 15-30 minutes near the end of the session to ensure Part 3 gets completed.**
 
-The objective is not necessarily to _finish_ the exercise, it's to observe how you proceeds through the work required. Use the exercise as an opportunity to show what **quality production code** looks like.
+The objective is not necessarily to _finish_ the exercise, it's to observe how you proceed through the work required. Use the exercise as an opportunity to show what **quality production code** looks like.
 
 > If using Python we recommend using the `pandas` package for this exercise.
 
