@@ -1,0 +1,8 @@
+1. Write tests for empty files
+2. Write tests for null values in name column
+3. Write code and tests for  looking up values of company ids and state abbreviations
+4. Write code and tests for incorrect chronological combinations
+5. Write code and tests for bad data file
+6. write code and integration tests for connection to postgres db
+7. Write code and tests for creating database table
+8. Write code and tests for ingesting data to table
