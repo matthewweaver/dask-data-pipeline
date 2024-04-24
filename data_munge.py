@@ -1,58 +1,60 @@
+# Comment pandas and uncomment dask import to run in parallel if won't fit in memory
 import pandas as pd
+# import dask.dataframe as pd
 import sqlite3
+from contextlib import closing
 from us_states_abbreviations import abbreviation_to_name
+
 name_to_abbreviation = {v: k for k, v in abbreviation_to_name.items()}
 
 def read_files(filename, separator=None, date_columns=None):
-    return pd.read_csv(filename, sep=separator, parse_dates=date_columns)
+    return pd.read_csv(filename, sep=separator, parse_dates=date_columns, engine='python')
     
 def transform_softball(softball):    
     # Standardise first and last name columns - only take first two values incase multiple spaces
-    softball['first_name'] = softball["name"].str.split(expand=True)[0]
-    softball['last_name'] = softball["name"].str.split(expand=True)[1]
-    softball.drop('name', axis=1, inplace=True)
+    softball['first_name'] = softball["name"].str.split(expand=True, n=2)[0]
+    softball['last_name'] = softball["name"].str.split(expand=True, n=2)[1]
+    softball = softball.drop('name', axis=1)
     # Map states to two char abbv
-    softball['state'] = softball['us_state'].map(lambda state_name: name_to_abbreviation[state_name])
-    softball.drop('us_state', axis=1, inplace=True)
-    softball.rename(columns={"date_of_birth": "dob", "joined_league": "member_since",},inplace=True)
+    softball['state'] = softball['us_state'].map(lambda state_name: name_to_abbreviation[state_name], meta=('state_name', str))
+    softball = softball.drop('us_state', axis=1)
+    softball = softball.rename(columns={"date_of_birth": "dob", "joined_league": "member_since"})
     return softball
 
-def remove_bad_records(df):
-    # Sanity check the dates
-    print(df['last_active'].agg(['min', 'max']))
-    print(df['member_since'].agg(['min', 'max']))
-    print(df['dob'].agg(['min', 'max']))
-    # Create bad records dataframe
-    bad_records = df.loc[(df['last_active'].dt.year < df['member_since']) | (df['member_since'] < df['dob'].dt.year) | (df['last_active'] < df['dob'])]
-    # Drop bad records from master
-    df = df.drop(bad_records.index)
-    return df, bad_records
-
-def main():
-    golf = read_files(filename="unity_golf_club.csv", date_columns=['dob', 'last_active']).sort_index(axis=1)
-    softball = read_files(filename="us_softball_league.tsv", separator="\t", date_columns=['date_of_birth', 'last_active'])
-    softball = transform_softball(softball).sort_index(axis=1)
-    softball["source_file"] = "us_softball_league.tsv"
-    golf["source_file"] = "unity_golf_club.csv"
+def create_master_dataframe(softball, golf):
     master = pd.concat([softball, golf], ignore_index=True)
     companies = read_files("companies.csv")
     master_with_company_name = master.join(companies.set_index('id'), on='company_id')
-    master_with_company_name.rename(columns={'name': 'company_name'}, inplace=True)
-    master_with_company_name.drop('company_id', axis=1, inplace=True)
-    master_with_company_name_removed_bad_records, bad_records = remove_bad_records(master_with_company_name)
-    
-    # Ingest pandas dataframes into SQL database
-    df = master_with_company_name_removed_bad_records
-    # Creates sql database file in current working directory
-    con = sqlite3.connect("exercise.db")
-    cur = con.cursor()
-    df.to_sql(name='master', con=con)
+    master_with_company_name = master_with_company_name.rename(columns={'name': 'company_name'})
+    master_with_company_name = master_with_company_name.drop('company_id', axis=1)
+    return master_with_company_name
 
-    # Test database persists
-    res = cur.execute("SELECT * FROM master")
-    res.fetchone()
+def remove_bad_records(df):
+    # Create bad records dataframe
+    bad_records = df.loc[(df['last_active'].dt.year < df['member_since']) | (df['member_since'] < df['dob'].dt.year) | (df['last_active'] < df['dob'])]
+    # Drop bad records from master
+    df = df.loc[(df['last_active'].dt.year >= df['member_since']) | (df['member_since'] >= df['dob'].dt.year) | (df['last_active'] >= df['dob'])]
+    return df, bad_records
 
-    # Use Dask to handle large datasets which don't fit in memory, and sqlite3 db file
+def ingest_into_sql_db(**dfs):
+    # Creates sql database file in current working directory when run first time
+    with closing(sqlite3.connect("exercise.db")) as connection:
+        for df in dfs:
+            # Ingest pandas/dask dataframes into SQL database
+            dfs[df].to_sql(name=df, con=connection)
+
+
+def main():
+    golf = read_files(filename="unity_golf_club.csv", date_columns=['dob', 'last_active'])
+    softball = read_files(filename="us_softball_league.tsv", separator="\t", date_columns=['date_of_birth', 'last_active'])
+    softball = transform_softball(softball)
+    softball["source_file"] = "us_softball_league.tsv"
+    golf["source_file"] = "unity_golf_club.csv"
+    master = create_master_dataframe(softball, golf)
+    master, bad_records = remove_bad_records(master)
+    print(master.head())
+    print(master.info())
+    ingest_into_sql_db(master = master, bad_records = bad_records)
 
 if __name__ == "__main__":
     main()
