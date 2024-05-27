@@ -2,3 +2,4 @@ pandas
 pytest
 dask
 dask[dataframe]
+SQLAlchemy

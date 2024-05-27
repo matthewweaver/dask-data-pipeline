@@ -1,35 +1,10 @@
-# Hinge Health Data Engineering Onsite Project
+# Data Engineering Project
 
 The US Softball League has entered into an agreement with Unity Golf Club to provide a common set of membership benefits to both organizations. But there are problems: the data is not entirely compatible. To help these two fine organizations, clean up the data and provide some simple statistics.
 
-## Challenge Overview
-
-Write a small Python or Go application to process and analyze the data provided in the included files.
-
-**Be sure to set aside at least 15-30 minutes near the end of the session to ensure Part 3 gets completed.**
-
-The objective is not necessarily to _finish_ the exercise, it's to observe how you proceed through the work required. Use the exercise as an opportunity to show what **quality production code** looks like.
-
-> If using Python we recommend using the `pandas` package for this exercise, though it's not required.
-
-## Guidelines
-
-We expect to see the following in the final solution code:
-
-- Unit tests _(as appropriate)_
-- Integration and/or end-to-end tests _(as appropriate)_
-- Dedependency management with [pipenv](https://pipenv.readthedocs.io/en/latest/) and a Pipfile or Go modules
-- Code quality tooling _(linting, etc.)_
-
-> If any of these concepts are unfamiliar to you, the Hinge Health engineer partnered with you will provide assistance.
-
-Again, you are not expected to finish the entire exercise. Budget no more than 2 hours, and incrementally commit your work into a branch for timestamping. We like to follow your thinking through the git commits.
-
-Once you have completed the 2 hours, issue a Pull Request. Please do not push directly to master.
-
 ## Part 1: Data Munging
 
-Given two data files, your first task is to standardize and combine them into a common file for further analysis.
+Given two data files standardize and combine them into a common file for further analysis.
 
 Steps:
 1. Transform us_softball_league.tsv to match unity_golf_club.csv in columns and format.
@@ -39,7 +14,7 @@ Steps:
 2. Combine the two files into one master file.
     - Indicate the source file for each record in the combined file.
 3. Use companies.csv to replace `company_id` with the company name.
-4. Identify suspect records (hint: look for impossible chronological combinations).
+4. Identify suspect records.
     - Write bad records into a separate file.
     - Drop those records from the main file.
 
@@ -81,9 +56,3 @@ Samples:
 Build a data model to support the data seen here and write software that will write this data to a database. For the purposes of this exercise use a SQLite3 or PostgreSQL database running locally.
 
 > Proceed as if the dataset does not fit entirely into RAM.
-
-## Part 3: Follow-up
-
-Write a document (a simple TODO.txt or TODO.md is fine) outlining the next steps for this "project", taking into account all the progress to this point. Suggestions for further enhancement, improvement, and refactoring are encouraged.
-
-If the entire exercise has not been completed, the TODO should also outline the work remaining to reach the end of the exercise.
