@@ -62,7 +62,7 @@ def ingest_into_sql_db(table_name: str, df: dd.DataFrame) -> None:
     # Creates sql database file in current working directory when run first time
     with closing(sqlite3.connect("exercise.db")):
         # Ingest pandas/dask dataframes into SQL database
-        df.to_sql(table_name, "sqlite:///exercise.db")
+        df.to_sql(table_name, "sqlite:///exercise.db", if_exists="replace")
 
 
 def main():
